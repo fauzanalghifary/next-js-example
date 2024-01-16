@@ -1,22 +1,23 @@
 import React from 'react'
 
 interface TokenContext {
-    token: string
-    setToken: React.Dispatch<React.SetStateAction<string>>
+  token: string
+  setToken: React.Dispatch<React.SetStateAction<string>>
 }
 
 export const TokenContext = React.createContext<TokenContext>({
-    token: '',
-    setToken: () => {}
+  token: '',
+  setToken: () => {
+  }
 })
 
 
-const TokenContextProvider = ({ children }: any) => {
-    const [token, setToken] = React.useState<string>('')
+export const TokenContextProvider = ({ children }: any) => {
+  const [token, setToken] = React.useState<string>('')
 
-    return (
-        <TokenContext.Provider value={{ token, setToken }}>
-            {children}
-        </TokenContext.Provider>
-    )
+  return (
+    <TokenContext.Provider value={{ token, setToken }}>
+      {children}
+    </TokenContext.Provider>
+  )
 }
