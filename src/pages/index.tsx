@@ -12,7 +12,7 @@ interface HomeProps {
 export default function Home({ categories }: HomeProps) {
   return (
     <div className={`h-full w-full text-white`}>
-      <CategoriesTable categories={categories} />
+      <CategoriesTable categories={categories} newCategoryPath={'/new-category'} editCategoryPath={'/edit-category'} />
     </div>
   )
 }

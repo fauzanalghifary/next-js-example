@@ -6,9 +6,11 @@ import React from 'react'
 
 interface CategoriesTableProps {
   categories: Category[]
+  newCategoryPath: string
+  editCategoryPath: string
 }
 
-const CategoriesTable = ({ categories }: CategoriesTableProps) => {
+const CategoriesTable = ({ categories, newCategoryPath, editCategoryPath }: CategoriesTableProps) => {
   const router = useRouter()
   const { triggerDelete } = useCategoryDelete()
 
@@ -42,7 +44,7 @@ const CategoriesTable = ({ categories }: CategoriesTableProps) => {
                   type="button"
                   className="block rounded-md bg-indigo-500 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                   onClick={() => {
-                    router.push('/new-category')
+                    router.push(newCategoryPath)
                   }}
                 >
                   Add category
@@ -97,7 +99,7 @@ const CategoriesTable = ({ categories }: CategoriesTableProps) => {
                           <button
                             className="text-indigo-400 hover:text-indigo-300"
                             onClick={() => {
-                              router.push(`/edit-category/${category.id}`)
+                              router.push(`${editCategoryPath}/${category.id}`)
                             }}
                           >
                             Edit
