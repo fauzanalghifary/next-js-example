@@ -1,3 +1,4 @@
+'use client'
 import { useRouter } from 'next/navigation'
 import { Category } from '@/interfaces/category'
 import useCategoryDelete from '@/hooks/useCategoryDelete'

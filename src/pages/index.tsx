@@ -1,21 +1,15 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
 import CategoriesTable from '@/components/CategoriesTable'
-import useCategoriesGet from '@/hooks/useCategoriesGet'
 import { fetchCategories } from '@/hooks/fetchCategories'
 import { Category } from '@/interfaces/category'
 import Cookies from 'universal-cookie'
 import { TOKEN_KEY } from '@/utils/constant'
-import type { NextApiRequest, NextApiResponse } from 'next'
-
-const inter = Inter({ subsets: ['latin'] })
+import type { NextApiRequest } from 'next'
 
 interface HomeProps {
   categories: Category[]
 }
 
 export default function Home({ categories }: HomeProps) {
-  console.log(categories)
   return (
     <div className={`h-full w-full text-white`}>
       <CategoriesTable categories={categories} />

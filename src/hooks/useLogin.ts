@@ -10,7 +10,7 @@ interface LoginPayload {
   password: string
 }
 
-const useLogin = () => {
+const useLogin = (homePath: string) => {
   const router = useRouter()
   const { setToken } = React.useContext(TokenContext)
 
@@ -33,7 +33,7 @@ const useLogin = () => {
       localStorage.setItem(TOKEN_KEY, data.data.token)
       setToken(data.data.token)
       setTokenAndCookies(data.data.token)
-      router.push('/')
+      router.push(homePath)
       await Swal.fire({
         icon: 'success',
         title: 'Login Success'
@@ -41,7 +41,6 @@ const useLogin = () => {
     } catch (error) {
       await Swal.fire({
         icon: 'error',
-
         title: 'Login Failed'
       })
     }

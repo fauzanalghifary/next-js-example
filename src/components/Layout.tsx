@@ -1,5 +1,6 @@
 import Header from '@/components/Header'
 import React from 'react'
+import '@/styles/globals.css'
 
 interface MainLayoutProps {
   children: React.ReactNode

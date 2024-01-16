@@ -8,7 +8,7 @@ interface RegisterPayload {
   password: string
 }
 
-const useRegister = () => {
+const useRegister = (loginPath: string) => {
   const router = useRouter()
   const handleRegister = async (payload: RegisterPayload) => {
     const response = await fetch(REGISTER_API_URL, {
@@ -28,7 +28,7 @@ const useRegister = () => {
       text: 'You can login now'
     })
 
-    router.push('/login')
+    router.push(loginPath)
   }
 
   return {
