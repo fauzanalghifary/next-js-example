@@ -3,6 +3,7 @@ import Swal from 'sweetalert2'
 import React from 'react'
 import { TokenContext } from '@/context/TokenContextProvider'
 import { useRouter } from 'next/navigation'
+import { setTokenAndCookies } from '@/utils/cookies'
 
 interface LoginPayload {
   email: string
@@ -31,6 +32,7 @@ const useLogin = () => {
 
       localStorage.setItem(TOKEN_KEY, data.data.token)
       setToken(data.data.token)
+      setTokenAndCookies(data.data.token)
       router.push('/')
       await Swal.fire({
         icon: 'success',

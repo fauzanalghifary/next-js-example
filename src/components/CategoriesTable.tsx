@@ -1,13 +1,26 @@
 import { useRouter } from 'next/navigation'
 import { Category } from '@/interfaces/category'
-import useCategoriesGet from '@/hooks/useCategoriesGet'
 import useCategoryDelete from '@/hooks/useCategoryDelete'
+import React from 'react'
 
-const CategoriesTable = () => {
+interface CategoriesTableProps {
+  categories: Category[]
+}
+
+const CategoriesTable = ({ categories }: CategoriesTableProps) => {
   const router = useRouter()
-  const { categories, setCategories } = useCategoriesGet()
+  const { triggerDelete } = useCategoryDelete()
 
-  const { triggerDelete } = useCategoryDelete({ categories, setCategories })
+  const [localCategories, setLocalCategories] = React.useState<Category[]>(categories)
+
+  const handleDelete = async (id: string) => {
+    try {
+      await triggerDelete(id)
+      setLocalCategories(localCategories.filter((c) => c.id !== id))
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <div className="bg-gray-900">
@@ -68,7 +81,7 @@ const CategoriesTable = () => {
                     </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-800">
-                    {categories?.map((category: Category) => (
+                    {localCategories?.map((category: Category) => (
                       <tr key={crypto.randomUUID()}>
                         <td className="whitespace-nowrap px-3 py-3.5 text-sm font-medium text-white sm:pl-0">
                           {category.id}
@@ -90,7 +103,7 @@ const CategoriesTable = () => {
                           </button>
                           <button
                             className="text-indigo-400 hover:text-indigo-300"
-                            onClick={() => triggerDelete(category.id)}
+                            onClick={() => handleDelete(category.id)}
                           >
                             Delete
                           </button>

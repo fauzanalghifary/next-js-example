@@ -33,8 +33,6 @@ export default function Header() {
     })
   }
 
-  console.log(token)
-
   return (
     <header className="bg-gray-900">
       <nav

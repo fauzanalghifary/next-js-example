@@ -2,12 +2,7 @@ import { CATEGORY_API_URL, TOKEN_KEY } from '@/utils/constant'
 import Swal from 'sweetalert2'
 import { Category } from '@/interfaces/category'
 
-interface UseCategoryDeleteProps {
-  categories: Category[]
-  setCategories: (categories: Category[]) => void
-}
-
-const useCategoryDelete = ({ categories, setCategories }: UseCategoryDeleteProps) => {
+const useCategoryDelete = () => {
   const handleDelete = async (id: string) => {
     try {
       const response = await fetch(`${CATEGORY_API_URL}/${id}`, {
@@ -26,7 +21,7 @@ const useCategoryDelete = ({ categories, setCategories }: UseCategoryDeleteProps
         icon: 'success',
         title: 'Category deleted'
       })
-      setCategories(categories.filter((category: Category) => category.id !== id))
+      // setCategories(categories.filter((category: Category) => category.id !== id))
     } catch (error) {
       console.log(error)
       await Swal.fire({
