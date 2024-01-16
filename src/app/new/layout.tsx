@@ -1,4 +1,6 @@
+'use client'
 import MainLayout from '@/components/Layout'
+import { TokenContextProvider } from '@/context/TokenContextProvider'
 
 interface AppLayoutProps {
   children: React.ReactNode
@@ -6,9 +8,11 @@ interface AppLayoutProps {
 
 const AppLayout = ({ children }: AppLayoutProps) => {
   return (
-    <MainLayout>
-      {children}
-    </MainLayout>
+    <TokenContextProvider>
+      <MainLayout>
+        {children}
+      </MainLayout>
+    </TokenContextProvider>
   )
 }
 
