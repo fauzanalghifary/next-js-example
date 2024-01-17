@@ -1,17 +1,15 @@
 'use client'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import { useSearchParams } from 'next/navigation'
+import { useParams } from 'next/navigation'
 
 import useCategoryUpdate from '@/hooks/useCategoryUpdate'
 import useCategoryGet from '@/hooks/useCategoryGet'
 
 const EditCategoryComponent = () => {
-  const searchParams = useSearchParams()
+  const params = useParams<{ id: string }>()
 
-  const id = searchParams?.get('id') ?? ''
-
-  const { category } = useCategoryGet({ id })
+  const { category } = useCategoryGet({ id: params?.id ?? '' })
   const { triggerUpdate } = useCategoryUpdate()
 
   const formik = useFormik({
