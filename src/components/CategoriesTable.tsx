@@ -14,12 +14,10 @@ const CategoriesTable = ({ categories, newCategoryPath, editCategoryPath }: Cate
   const router = useRouter()
   const { triggerDelete } = useCategoryDelete()
 
-  const [localCategories, setLocalCategories] = React.useState<Category[]>(categories)
-
   const handleDelete = async (id: string) => {
     try {
       await triggerDelete(id)
-      setLocalCategories(localCategories.filter((c) => c.id !== id))
+      router.refresh()
     } catch (error) {
       console.log(error)
     }
@@ -84,7 +82,7 @@ const CategoriesTable = ({ categories, newCategoryPath, editCategoryPath }: Cate
                     </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-800">
-                    {localCategories?.map((category: Category) => (
+                    {categories?.map((category: Category) => (
                       <tr key={crypto.randomUUID()}>
                         <td className="whitespace-nowrap px-3 py-3.5 text-sm font-medium text-white sm:pl-0">
                           {category.id}
