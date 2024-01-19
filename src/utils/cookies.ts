@@ -13,5 +13,5 @@ export function setStorageToken(accessToken: string) {
 }
 
 export function setCookieToken(accessToken: string) {
-  cookies.set(TOKEN_KEY, accessToken, { path: '/' })
+  cookies.set(TOKEN_KEY, accessToken)
 }
