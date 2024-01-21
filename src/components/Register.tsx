@@ -47,7 +47,7 @@ const RegisterComponent = ({ loginPath }: RegisterComponentProps) => {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" onSubmit={formik.handleSubmit}>
+          <form className="space-y-6" onSubmit={formik.handleSubmit} data-testid={'register-form'}>
             <div>
               <label
                 htmlFor="name"

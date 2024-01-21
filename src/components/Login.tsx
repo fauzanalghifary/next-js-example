@@ -5,7 +5,7 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import useLogin from '@/hooks/useLogin'
 
-interface LoginComponentProps {
+export interface LoginComponentProps {
   registerPath: string
   homePath: string
 }
@@ -40,7 +40,7 @@ const LoginComponent = ({ registerPath, homePath }: LoginComponentProps) => {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" onSubmit={formik.handleSubmit}>
+          <form className="space-y-6" onSubmit={formik.handleSubmit} data-testid={'login-form'}>
             <div>
               <label
                 htmlFor="email"
@@ -50,6 +50,7 @@ const LoginComponent = ({ registerPath, homePath }: LoginComponentProps) => {
               </label>
               <div className="mt-2">
                 <input
+                  data-testid={'email-input'}
                   {...formik.getFieldProps('email')}
                   id="email"
                   name="email"
@@ -61,7 +62,7 @@ const LoginComponent = ({ registerPath, homePath }: LoginComponentProps) => {
                 />
               </div>
               {formik.errors.email ? (
-                <div className={`mt-2 text-red-300`}>{formik.errors.email}</div>
+                <div className={`mt-2 text-red-300`} data-testid={'email-error-message'}>{formik.errors.email}</div>
               ) : null}
             </div>
 
@@ -76,6 +77,7 @@ const LoginComponent = ({ registerPath, homePath }: LoginComponentProps) => {
               </div>
               <div className="mt-2">
                 <input
+                  data-testid={'password-input'}
                   {...formik.getFieldProps('password')}
                   id="password"
                   name="password"
@@ -85,7 +87,7 @@ const LoginComponent = ({ registerPath, homePath }: LoginComponentProps) => {
                 />
               </div>
               {formik.errors.password ? (
-                <div className={`mt-2 text-red-300`}>
+                <div className={`mt-2 text-red-300`} data-testid={'password-error-message'}>
                   {formik.errors.password}
                 </div>
               ) : null}
@@ -93,6 +95,7 @@ const LoginComponent = ({ registerPath, homePath }: LoginComponentProps) => {
 
             <div>
               <button
+                data-testid={'login-button'}
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
               >
@@ -106,6 +109,7 @@ const LoginComponent = ({ registerPath, homePath }: LoginComponentProps) => {
             <Link
               href={registerPath}
               className="font-semibold leading-6 text-indigo-400 hover:text-indigo-300"
+              data-testid={'register-link'}
             >
               Register
             </Link>
