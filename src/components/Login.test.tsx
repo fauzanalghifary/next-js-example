@@ -10,7 +10,7 @@ jest.mock('@/hooks/useLogin', () => ({
   })
 }))
 
-describe('renders login form', () => {
+describe('Login', () => {
   const defaultProps: LoginComponentProps = {
     registerPath: '/register',
     homePath: '/'
@@ -34,11 +34,11 @@ describe('renders login form', () => {
   // })
 
   it('should render error message when submit empty form', async () => {
-    render(<Login {...defaultProps} />)
-    fireEvent.click(screen.getByTestId('login-button'))
+    render(<Login {...defaultProps} />) // Arrange => siapkan komponen yang akan di test
+    fireEvent.click(screen.getByTestId('login-button')) // Act => lakukan aksi yang akan di test
     await waitFor(() => {
-      expect(screen.getByTestId('email-error-message')).toBeInTheDocument()
-      expect(screen.getByTestId('password-error-message')).toBeInTheDocument()
+      expect(screen.getByTestId('email-error-message')).toBeInTheDocument() // Assert => pastikan hasilnya sesuai dengan yang diharapkan
+      expect(screen.getByTestId('password-error-message')).toBeInTheDocument() // Assert => pastikan hasilnya sesuai dengan yang diharapkan
     })
   })
 
