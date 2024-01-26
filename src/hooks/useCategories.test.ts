@@ -8,7 +8,7 @@ describe('useCategoriesGet', () => {
 
   beforeEach(() => {
     fetchMock = jest.fn()
-    ;(global as any).fetch = fetchMock
+    global.fetch = fetchMock
   })
 
   it('handles fetch categories success', async () => {
